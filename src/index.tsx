@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect, useMemo, useRef } from 'react'
 import {
   createSelectorProvider,
   useContextSelector
 } from 'react-use-context-selector'
+import { equal } from '@wry/equality'
 
 const EMPTY: unique symbol = Symbol()
 
@@ -37,13 +38,23 @@ export const createContainer = <Value, State = void>(
   }
 
   const useContainerSelector = <T,>(selector: (input: Value) => T): T => {
+    const previousRef = useRef<T>()
     const value = useContextSelector(Context, (input) => {
       if (input === EMPTY) {
         throw new Error('Component must be wrapped with <Container.Provider>')
       }
-      return selector(input)
+
+      const selected = selector(input)
+
+      if (equal(previousRef.current, selected)) {
+        return previousRef.current
+      } else {
+        previousRef.current = selected
+        return selected
+      }
     })
-    return value
+
+    return value as T
   }
 
   return { Provider, useContainer, useContainerSelector }

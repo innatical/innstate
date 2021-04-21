@@ -8,6 +8,7 @@ const useCounter = (initialState = 0) => {
   const increment = useCallback(() => setCount((count) => count + 1), [])
 
   const [clock, setClock] = useState(0)
+  const resetCLock = useCallback(() => setClock(0), [])
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -23,7 +24,8 @@ const useCounter = (initialState = 0) => {
     count,
     decrement,
     increment,
-    clock
+    clock,
+    resetCLock
   }
 }
 
@@ -41,11 +43,14 @@ const CounterDisplay = () => {
 }
 
 const OtherCounterDisplay = () => {
-  const clock = Counter.useContainerSelector((input) => input.clock)
-
+  const clock = Counter.useContainerSelector((input) => ({
+    time: input.clock,
+    resetClock: input.resetCLock
+  }))
   return (
     <div>
-      <span>{clock}</span>
+      <button onClick={clock.resetClock}>Reset Clock</button>
+      <span>{clock.time}</span>
     </div>
   )
 }
