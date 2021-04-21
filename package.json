@@ -1,0 +1,28 @@
+{
+  "name": "@innatical/innstate",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": "git@github.com:innatical/innstate.git",
+  "author": "Innatical <contact@innatical.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react": "^17.0.3",
+    "@types/react-dom": "^17.0.3",
+    "parcel": "^2.0.0-beta.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "typescript": "^4.2.4"
+  },
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "example": "parcel serve example/index.html --dist-dir example/dist --cache-dir example/.parcel-cache",
+    "build": "tsc",
+    "prepublish": "tsc"
+  },
+  "dependencies": {
+    "react-use-context-selector": "^1.0.2"
+  }
+}
