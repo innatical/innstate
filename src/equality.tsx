@@ -1,7 +1,6 @@
 // Adapted from https://github.com/benjamn/wryware/blob/main/packages/equality/src/equality.ts
 
 const { toString, hasOwnProperty } = Object.prototype
-const fnToStr = Function.prototype.toString
 const previousComparisons = new Map<object, Set<object>>()
 
 /**

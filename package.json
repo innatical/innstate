@@ -23,7 +23,6 @@
     "prepublish": "tsc"
   },
   "dependencies": {
-    "@wry/equality": "^0.4.0",
     "react-use-context-selector": "^1.0.2"
   }
 }
