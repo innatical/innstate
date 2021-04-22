@@ -1,9 +1,9 @@
-import React, { useEffect, useMemo, useRef } from 'react'
+import React, { useRef } from 'react'
 import {
   createSelectorProvider,
   useContextSelector
 } from 'react-use-context-selector'
-import { equal } from '@wry/equality'
+import { equal } from './equality'
 
 const EMPTY: unique symbol = Symbol()
 
