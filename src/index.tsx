@@ -1,8 +1,9 @@
 import React, { useRef } from 'react'
 import {
-  createSelectorProvider,
-  useContextSelector
-} from 'react-use-context-selector'
+  createContext,
+  useContextSelector,
+  useContext
+} from 'use-context-selector'
 import { equal } from './equality'
 
 const EMPTY: unique symbol = Symbol()
@@ -21,16 +22,15 @@ export interface Container<Value, State = void> {
 export const createContainer = <Value, State = void>(
   useHook: (initialState?: State) => Value
 ): Container<Value, State> => {
-  const Context = React.createContext<Value | typeof EMPTY>(EMPTY)
-  const ContextProvider = createSelectorProvider(Context)
+  const Context = createContext<typeof EMPTY | Value>(EMPTY)
 
   function Provider(props: ContainerProviderProps<State>) {
     const value = useHook(props.initialState)
-    return <ContextProvider value={value}>{props.children}</ContextProvider>
+    return <Context.Provider value={value}>{props.children}</Context.Provider>
   }
 
   const useContainer = (): Value => {
-    const value = React.useContext(Context)
+    const value = useContext(Context)
     if (value === EMPTY) {
       throw new Error('Component must be wrapped with <Container.Provider>')
     }
