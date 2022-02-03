@@ -2,7 +2,7 @@
 
 ## The easiest state library, ever.
 
-innstate is a fork of unstated-next with additional utilities and support. It aims to make to make state management in React accesable and accessible.
+innstate is a fork of unstated-next with additional utilities and support. It aims to make to make state management in React intuitive and accessible.
 
 # Install
 
