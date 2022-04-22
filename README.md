@@ -1,3 +1,6 @@
+> This repo is no longer maintained, consider using [zustand](https://github.com/pmndrs/zustand) instead.
+
+
 # innstate
 
 ## The easiest state library, ever.
